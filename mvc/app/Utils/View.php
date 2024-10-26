@@ -5,7 +5,22 @@ namespace App\Utils;
 class View
 {
   /**
-   * Método responsável por retirnar o conteúdo exato de uma View
+   * Variáveis padrões das Views
+   * @var array
+   */
+  private static array $vars;
+
+  /**
+   * Método responsável por definir os dados iniciais da classe
+   * @param array $vars
+   */
+  public static function init(array $vars = []): void
+  {
+    self::$vars = $vars;
+  }
+
+  /**
+   * Método responsável por retornar o conteúdo exato de uma View
    * @param  string $view
    * @return string
    */
@@ -28,9 +43,11 @@ class View
     $contentView = str_replace('{{ ', '{{', $contentView);
     $contentView = str_replace(' }}', '}}', $contentView);
 
+    //MERGE DE VARIÁVEIS DA VIEW
+    $vars = array_merge(self::$vars, $vars);
+
     //CHAVES DO ARRAY DE VARIÁVEIS
     $keys = array_keys($vars);
-
     $keys = array_map(function($item) {
       // return '{{' . $item . '}}'';
       return "{{{$item}}}";
