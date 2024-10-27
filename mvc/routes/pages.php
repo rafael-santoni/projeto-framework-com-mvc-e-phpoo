@@ -5,6 +5,9 @@ use App\Controller\Pages as Controller;
 
 //ROTA HOME
 $objRouter->get('/',[
+  // 'middlewares' => [
+  //   'maintenance'
+  // ],
   function() {
     return new Response(200, Controller\Home::getHome());
   }
