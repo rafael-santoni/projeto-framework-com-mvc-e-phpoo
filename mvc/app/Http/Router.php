@@ -41,7 +41,7 @@ class Router
   public function __construct(string $url)
   {
     $this->url = $url;
-    $this->request = new Request;
+    $this->request = new Request($this);
     $this->setPrefix();
   }
 
@@ -89,10 +89,6 @@ class Router
 
     //ADICIONA A ROTA DENTRO DA CLASSE
     $this->routes[$patternRoute][$method] = $params;
-
-    // echo "<pre>";
-    // print_r($this);
-    // echo "</pre>"; exit;
   }
 
   /**
@@ -226,6 +222,14 @@ class Router
     } catch (Exception $e) {
       return new Response($e->getCode(), $e->getMessage());
     }
+  }
 
+  /**
+   * Método responsável por retornar a URL atual
+   * @return string
+   */
+  public function getCurrentUrl(): string
+  {
+    return $this->url . $this->getUri();
   }
 }

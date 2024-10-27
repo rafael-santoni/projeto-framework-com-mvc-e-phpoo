@@ -2,11 +2,11 @@
 
 namespace App\Controller\Pages;
 
-use App\Controller\Pages\Page;
+use App\Controller\Pages\Page as PageController;
 use App\Model\Entity\Organization as OrganizationModel;
 use App\Utils\View;
 
-class About extends Page
+class About extends PageController
 {
   /**
    * Método responsável por retornar o conteúdo (View) da Página de Sobre o Canal
@@ -25,6 +25,6 @@ class About extends Page
     ]);
 
     //RETORNA A VIEW DA PÁGINA
-    return parent::getPage('SOBRE => RS-Dev', $content);
+    return parent::getPage('SOBRE | RS-Dev', $content);
   }
 }
