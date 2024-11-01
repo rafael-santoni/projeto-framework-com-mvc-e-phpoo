@@ -2,11 +2,12 @@
 
 namespace App\Controller\Admin;
 
+use App\Utils\View;
 use App\Http\Request;
-use App\Controller\Admin\Page as PageController;
 use App\Model\Entity\User as UserModel;
 use App\Session\Admin\Login as LoginSession;
-use App\Utils\View;
+use App\Controller\Admin\Page as PageController;
+use App\Controller\Admin\Alert;
 
 class Login extends PageController
 {
@@ -19,9 +20,10 @@ class Login extends PageController
   {
     //STATUS
     $status = (!is_null($errorMessage)) ?
-      View::render('admin/login/status', [
-        'mensagem' => $errorMessage,
-      ]) :
+      // View::render('admin/login/status', [
+      //   'mensagem' => $errorMessage,
+      // ]) :
+      Alert::getError($errorMessage) :
       '';
 
     //CONTEÚDO DA PÁGINA DE LOGIN

@@ -52,6 +52,41 @@ class Testimony
   }
 
   /**
+   * Método responsável por atualizar os dados do banco com a instância atual
+   * @return boolean
+   */
+  public function atualizar(): bool
+  {
+    //ATUALIZA O DEPOIMENTO NO BANCO DE DADOS
+    return (new Database('depoimentos'))->update("id = {$this->id}",[
+      'nome' => $this->nome,
+      'mensagem' => $this->mensagem,
+    ]);
+
+  }
+
+  /**
+   * Método responsável por um depoimento do Banco de Dados
+   * @return boolean
+   */
+  public function excluir(): bool
+  {
+    //EXCLUI O DEPOIMENTO DO BANCO DE DADOS
+    return (new Database('depoimentos'))->delete("id = {$this->id}");
+
+  }
+
+  /**
+   * Método responsável por retornar um depoimento com base no seu ID
+   * @param integer $id
+   * @return Testimony|boolean
+   */
+  public static function getTestimonyById(int $id): Testimony|bool
+  {
+    return self::getTestimonies("id = {$id}")->fetchObject(self::class);
+  }
+
+  /**
    * Método responsável por retornar Depoimentos
    * @param  string $where
    * @param  string $order

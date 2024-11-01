@@ -1,45 +1,13 @@
 <?php
 
-use App\Http\Response;
-use App\Controller\Admin as Controller;
+//INCLUI AS ROTAS DE HOME
+include __DIR__ . '/admin/home.php';
 
-//ROTA ADMIN
-$objRouter->get('/admin',[
-    'middlewares' => [
-      'require-admin-login'
-    ],
-  function() {
-    return new Response(200, 'Controller\Home::getHome()');
-  }
-]);
+//INCLUI AS ROTAS DE LOGIN
+include __DIR__ . '/admin/login.php';
 
-//ROTA LOGIN
-$objRouter->get('/admin/login',[
-  'middlewares' => [
-    'require-admin-logout',
-  ],
-  function($request) {
-    return new Response(200, Controller\Login::getLogin($request));
-  }
-]);
+//INCLUI AS ROTAS DE DEPOIMENTOS
+include __DIR__ . '/admin/testimonies.php';
 
-//ROTA LOGIN (POST)
-$objRouter->post('/admin/login',[
-  'middlewares' => [
-    'require-admin-logout'
-  ],
-  function($request) {
-    return new Response(200, Controller\Login::setLogin($request));
-  }
-]);
-
-
-//ROTA LOGOUT
-$objRouter->get('/admin/logout',[
-  'middlewares' => [
-    'require-admin-login'
-  ],
-  function($request) {
-    return new Response(200, Controller\Login::setLogout($request));
-  }
-]);
+//INCLUI AS ROTAS DE DEPOIMENTOS
+include __DIR__ . '/admin/users.php';
