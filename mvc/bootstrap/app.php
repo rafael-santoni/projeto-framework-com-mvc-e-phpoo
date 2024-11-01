@@ -33,6 +33,7 @@ MiddlewareQueue::setMap([
   'maintenance' => App\Http\Middleware\Maintenance::class,
   'require-admin-logout' => App\Http\Middleware\RequireAdminLogout::class,
   'require-admin-login' => App\Http\Middleware\RequireAdminLogin::class,
+  'api' => App\Http\Middleware\Api::class
 ]);
 
 //DEFINE O MAPEAMENTO DOS MIDDLEWARES PADRÕES (EXECUTADOS EM TODAS AS ROTAS)
