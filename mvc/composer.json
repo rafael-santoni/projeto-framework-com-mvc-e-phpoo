@@ -5,5 +5,8 @@
       "App\\": "app/",
       "Libs\\": "libs/"
     }
+  },
+  "require": {
+    "firebase/php-jwt": "5.2.1"
   }
 }
