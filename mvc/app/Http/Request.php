@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Router;
+use App\Model\Entity\User as UserModel;
 
 class Request
 {
@@ -43,6 +44,12 @@ class Request
   private array $headers = [];
 
   /**
+   * Usuário autenticado
+   * @var UserModel
+   */
+  public UserModel $user;
+
+  /**
    * Construtor da classe
    * @param Router $router
    */
@@ -50,11 +57,31 @@ class Request
   {
     $this->router = $router;
     $this->queryParams = $_GET ?? [];
-    $this->postVars = $_POST ?? [];
+    // $this->postVars = $_POST ?? [];
     $this->headers = getallheaders();
     $this->httpMethod = $_SERVER['REQUEST_METHOD'] ?? '';
     // $this->uri = $_SERVER['REQUEST_URI'] ?? '';
     $this->setUri();
+    $this->setPostVars();
+  }
+
+  /**
+   * Método responsável por definir as variáveis do POST
+   * @return boolean
+   */
+  private function setPostVars(): bool
+  {
+    //VERIFICA O MÉTODO DA RQEUISIÇÃO
+    if($this->httpMethod == 'GET') return false;
+
+    //POST PADRÃO
+    $this->postVars = $_POST ?? [] ;
+
+    //POST JSON
+    $inputRaw = file_get_contents('php://input');
+
+    $this->postVars = (strlen($inputRaw) && empty($_POST)) ? json_decode($inputRaw, true) : $this->postVars;
+    return true;
   }
 
   /**
