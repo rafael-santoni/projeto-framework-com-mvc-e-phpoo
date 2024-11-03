@@ -8,7 +8,8 @@ $objRouter->get('/api/v1/users', [
   'middlewares' => [
     'api',
     'user-basic-auth',
-    'jwt-auth'
+    'jwt-auth',
+    'cache'
   ],
   function($request) {
     return new Response(200, Controller\User::getUsers($request), 'application/json');
@@ -32,7 +33,8 @@ $objRouter->get('/api/v1/users/{id}', [
   'middlewares' => [
     'api',
     'user-basic-auth',
-    'jwt-auth'
+    'jwt-auth',
+    'cache'
   ],
   function($request, $id) {
     return new Response(200, Controller\User::getUser($request, $id), 'application/json');

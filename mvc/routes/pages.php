@@ -5,9 +5,10 @@ use App\Controller\Pages as Controller;
 
 //ROTA HOME
 $objRouter->get('/',[
-  // 'middlewares' => [
-  //   'maintenance'
-  // ],
+  'middlewares' => [
+    // 'maintenance',   ## Movido Para o Mapeamento de Middlewares Padrões das Rotas
+    'cache'
+  ],
   function() {
     return new Response(200, Controller\Home::getHome());
   }
@@ -15,6 +16,9 @@ $objRouter->get('/',[
 
 //ROTA SOBRE
 $objRouter->get('/sobre',[
+  'middlewares' => [
+    'cache'
+  ],
   function() {
     return new Response(200, Controller\About::getAbout());
   }
@@ -22,6 +26,9 @@ $objRouter->get('/sobre',[
 
 //ROTA DEPOIMENTOS
 $objRouter->get('/depoimentos',[
+  'middlewares' => [
+    'cache'
+  ],
   function($request) {
     return new Response(200, Controller\Testimony::getTestimonies($request));
   }

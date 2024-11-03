@@ -36,6 +36,7 @@ MiddlewareQueue::setMap([
   'api' => App\Http\Middleware\Api::class,
   'user-basic-auth' => App\Http\Middleware\UserBasicAuth::class,
   'jwt-auth' => App\Http\Middleware\JWTAuth::class,
+  'cache' => App\Http\Middleware\Cache::class,
 ]);
 
 //DEFINE O MAPEAMENTO DOS MIDDLEWARES PADRÕES (EXECUTADOS EM TODAS AS ROTAS)

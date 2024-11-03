@@ -103,6 +103,9 @@ class Router
       $params['variables'] = $matches[1];
     }
 
+    //REMOVE A BARRA NO FINAL DA ROTA
+    $route = rtrim($route, '/');
+
     //PADRÃO DE VALIDAÇÃO DA URL
     $patternRoute = '/^' . str_replace('/', '\/', $route) . '$/';
 
@@ -158,7 +161,7 @@ class Router
    * Método responsável por retornar a URI desconsiderando o prefixo
    * @return string
    */
-  private function getUri(): string
+  public function getUri(): string
   {
     //URI DA REQUISIÇÃO
     $uri = $this->request->getUri();
