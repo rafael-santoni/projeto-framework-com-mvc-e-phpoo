@@ -1,0 +1,21 @@
+.customHeader {
+  border-radius: 30px;
+}
+
+.customHeader .btn {
+  background-color: #333;
+  border: 1px solid #222;
+  color: #FFF;
+}
+
+.page-link {
+  color: #333;
+  font-weight: bold;
+}
+
+.page-item.active .page-link {
+  background-color: #F00;
+  border: 1px solid #F00;
+  color: #FFF;
+  font-weight: bold;
+}
